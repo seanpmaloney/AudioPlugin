@@ -1,0 +1,4 @@
+#files to ignore
+.DS_Store
+Builds/**
+JuceLibraryCode/**
