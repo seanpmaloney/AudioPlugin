@@ -10,10 +10,11 @@
 #include "PluginEditor.h"
 //==============================================================================
 AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAudioProcessor& p, AudioProcessorValueTreeState& apvts)
-    : AudioProcessorEditor (&p), audioProcessor (p), myApvts(apvts)
+: AudioProcessorEditor (&p), myApvts(apvts), audioProcessor (p)
 {
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
+    setLookAndFeel(&myLnF);
     setUpParameter(gainSlider, myApvts, "Gain", this);
     setSize (400, 300);
     setResizable(true, false);
@@ -49,10 +50,10 @@ void AudioPluginAudioProcessorEditor::setUpParameter(SliderWithAttachment& s, ju
     s.slider->addListener(listener);
     if(labelText != "")
     {
+        s.label.setJustificationType(juce::Justification::centredBottom);
         addAndMakeVisible(s.label);
         s.label.setText(labelText, juce::dontSendNotification);
         s.label.attachToComponent(s.slider.get(), false);
-        s.label.setJustificationType(juce::Justification::centredBottom);
     }
 }
 

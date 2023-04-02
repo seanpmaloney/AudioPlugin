@@ -11,8 +11,11 @@
 #pragma once
 #include <JuceHeader.h>
 
-class MyLookAndFeel : LookAndFeel_V4
+class MyLookAndFeel : public LookAndFeel_V4
 {
 public:
     //override the parts you want to customize
+    void drawRotarySlider (Graphics&, int x, int y, int width, int height,
+                           float sliderPosProportional, float rotaryStartAngle,
+                           float rotaryEndAngle, Slider&) override;
 };
