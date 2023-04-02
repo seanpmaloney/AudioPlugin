@@ -14,9 +14,9 @@ AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAud
 {
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
+    setUpParameter(gainSlider, myApvts, "Gain", this);
     setSize (400, 300);
     setResizable(true, false);
-//    setUpParameter(gainSlider, myApvts, "Gain", this);
 
 }
 
@@ -36,21 +36,16 @@ void AudioPluginAudioProcessorEditor::paint (juce::Graphics& g)
 
 void AudioPluginAudioProcessorEditor::resized()
 {
-    // This is generally where you'll want to lay out the positions of any
-    // subcomponents in your editor..
+    int w = getWidth();
+    int h = getHeight();
+    gainSlider.slider->setBounds(w/4, h/4, w/2, h/2);
 }
 
 void AudioPluginAudioProcessorEditor::setUpParameter(SliderWithAttachment& s, juce::AudioProcessorValueTreeState& apvts, String labelText, Slider::Listener* listener)
 {
-
-    //myLnF.getLabelFont(s.label);
-    s.slider.reset(new juce::Slider(juce::Slider::LinearHorizontal, juce::Slider::NoTextBox));
+    s.slider.reset(new juce::Slider(juce::Slider::RotaryHorizontalVerticalDrag, juce::Slider::NoTextBox));
     addAndMakeVisible(s.slider.get());
-    //s.slider->setLookAndFeel(&myLnF);
-//    juce::String sID = "0." + byteOffset;
-//    juce::String aID = "0." + String(offsetof(SynthModulation, destination));
-//    juce::String bID = "0." + String(offsetof(SynthPatch, octave));
-    s.attachment.reset(new juce::AudioProcessorValueTreeState::SliderAttachment(apvts, "", *s.slider.get()));
+    s.attachment.reset(new juce::AudioProcessorValueTreeState::SliderAttachment(apvts, "GAIN", *s.slider.get()));
     s.slider->addListener(listener);
     if(labelText != "")
     {

@@ -36,9 +36,9 @@ public:
 private:
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
-    AudioPluginAudioProcessor& audioProcessor;
     MyLookAndFeel myLnF;
-    std::unique_ptr<SliderWithAttachment> gainSlider;
     AudioProcessorValueTreeState& myApvts;
+    SliderWithAttachment gainSlider;
+    AudioPluginAudioProcessor& audioProcessor;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AudioPluginAudioProcessorEditor)
 };
