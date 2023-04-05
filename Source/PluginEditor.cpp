@@ -66,34 +66,35 @@ void AudioPluginAudioProcessorEditor::paint (juce::Graphics& g)
     // (Our component is opaque, so we must completely fill the background with a solid colour)
     g.fillAll (juce::Colours::black);
     g.setColour(juce::Colours::white);
-    
-    juce::Rectangle<int> thumbnailBounds ((getWidth()/6), (getWidth()/6)/2, (getWidth()/6), (getWidth()/6)/2);
+    int w = getWidth();
+    auto sliderW = w / 5;
+    auto sliderH = sliderW;
+    auto next = sliderW;
+    auto xPos = sliderW * 0.5f;
+    auto yPos = sliderH;
+    juce::Rectangle<float> thumbnailBounds (xPos +=next, yPos, sliderW * 3, sliderH);
+    g.setColour (juce::Colours::black);
+    g.fillRoundedRectangle(thumbnailBounds, (w*.02f));
     g.setColour (juce::Colours::white);
-            g.fillRect (thumbnailBounds);
-     
-            g.setColour (juce::Colours::red);                               // [8]
-     
-            visual.drawChannels (g,                                      // [9]
-                                    thumbnailBounds,
-                                    0.0,                                    // start time
-                                    visual.getTotalLength(),             // end time
-                                    1.0f);
+    g.drawRoundedRectangle(thumbnailBounds, (w*.02f), (w*.002f));
+    g.setColour (juce::Colours::red);
+    visual.drawChannels (g, thumbnailBounds.toNearestInt(),
+                        0.0, visual.getTotalLength(), 1.0f);
 
 }
 
 void AudioPluginAudioProcessorEditor::resized()
 {
     int w = getWidth();
-    int h = getHeight();
     //make a row of 4 sliders, with extra room
-    auto sliderW = w / 6;
+    auto sliderW = w / 5;
     auto sliderH = sliderW;
-    auto next = sliderW + sliderW * 0.2f;
-    auto xPos = sliderW/2;
-    auto yPos = sliderH/2;
-    loadSampleButton->setBounds(xPos + sliderW, yPos/2, sliderW /2, sliderH/2);
+    auto next = sliderW;
+    auto xPos = sliderW * 0.5f;
+    auto yPos = sliderH;
+    loadSampleButton->setBounds(w - sliderW, 0, sliderW, sliderH/2);
     gainSlider.slider->setBounds(xPos, yPos, sliderW, sliderH);
-    attackSlider.slider->setBounds(xPos, yPos +=next, sliderW, sliderH);
+    attackSlider.slider->setBounds(xPos, (yPos += (next * 1.2)), sliderW, sliderH);
     decaySlider.slider->setBounds(xPos+=next, yPos, sliderW, sliderH);
     sustainSlider.slider->setBounds(xPos+=next, yPos, sliderW, sliderH);
     releaseSlider.slider->setBounds(xPos+=next, yPos, sliderW, sliderH);
