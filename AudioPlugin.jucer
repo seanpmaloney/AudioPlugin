@@ -20,6 +20,10 @@
       <FILE id="spnyht" name="MyLookAndFeel.cpp" compile="1" resource="0"
             file="Source/MyLookAndFeel.cpp"/>
       <FILE id="wvx5qY" name="MyLookAndFeel.h" compile="0" resource="0" file="Source/MyLookAndFeel.h"/>
+      <FILE id="uL215Z" name="WaveformVisual.cpp" compile="1" resource="0"
+            file="Source/WaveformVisual.cpp"/>
+      <FILE id="gwVNXq" name="WaveformVisual.h" compile="0" resource="0"
+            file="Source/WaveformVisual.h"/>
     </GROUP>
   </MAINGROUP>
   <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>
