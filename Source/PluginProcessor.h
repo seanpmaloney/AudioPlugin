@@ -55,10 +55,15 @@ public:
     //==============================================================================
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
+    Array<ParameterID>& getParamList();
 private:
     AudioEngine engine;
     AudioProcessorValueTreeState apvts;
     ParameterID gainParam;
+    ParameterID attackParam;
+    ParameterID decayParam;
+    ParameterID sustainParam;
+    ParameterID releaseParam;
     Array<ParameterID> paramList;
     AudioProcessorValueTreeState::ParameterLayout createParams();
     //==============================================================================

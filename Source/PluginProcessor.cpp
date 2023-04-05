@@ -190,7 +190,20 @@ AudioProcessorValueTreeState::ParameterLayout AudioPluginAudioProcessor:: create
 {
     std::vector<std::unique_ptr<juce::RangedAudioParameter>> params;
     ParameterID gainParam("GAIN", 1);
+    ParameterID attackParam("ATTACK", 2);
+    ParameterID decayParam("DECAY", 3);
+    ParameterID sustainParam("SUSTAIN", 4);
+    ParameterID releaseParam("RELEASE", 5);
     params.push_back(std::make_unique<AudioParameterFloat>(gainParam, "Gain", 0.0f, 1.0f, 0.5f));
+    params.push_back(std::make_unique<AudioParameterFloat>(attackParam, "Attack", 0.0f, 1.0f, 0.5f));
+    params.push_back(std::make_unique<AudioParameterFloat>(decayParam, "Decay", 0.0f, 1.0f, 0.5f));
+    params.push_back(std::make_unique<AudioParameterFloat>(sustainParam, "Sustain", 0.0f, 1.0f, 0.5f));
+    params.push_back(std::make_unique<AudioParameterFloat>(releaseParam, "Release", 0.0f, 1.0f, 0.5f));
     return {params.begin(), params.end() };
+}
+
+Array<ParameterID>& AudioPluginAudioProcessor::getParamList()
+{
+    return paramList;
 }
 

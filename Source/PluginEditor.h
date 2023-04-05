@@ -39,6 +39,11 @@ private:
     MyLookAndFeel myLnF;
     AudioProcessorValueTreeState& myApvts;
     SliderWithAttachment gainSlider;
+    SliderWithAttachment attackSlider;
+    SliderWithAttachment decaySlider;
+    SliderWithAttachment sustainSlider;
+    SliderWithAttachment releaseSlider;
+    Array<SliderWithAttachment> sliders;
     AudioPluginAudioProcessor& audioProcessor;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AudioPluginAudioProcessorEditor)
 };

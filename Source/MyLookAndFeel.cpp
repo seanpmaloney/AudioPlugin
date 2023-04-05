@@ -16,11 +16,11 @@ void MyLookAndFeel::drawRotarySlider (Graphics& g, int x, int y, int width, int 
     auto outline = juce::Colours::darkgrey ;
     auto fill    = juce::Colours::white;
 
-    auto bounds = Rectangle<int> (x, y, width, height).toFloat().reduced (10);
+    auto bounds = Rectangle<int> (x , y, width , height).toFloat().reduced (10);
 
     auto radius = jmin (bounds.getWidth(), bounds.getHeight()) / 2.0f;
     auto toAngle = rotaryStartAngle + sliderPos * (rotaryEndAngle - rotaryStartAngle);
-    auto lineW = 3.0f;
+    auto lineW = width * .015f;
     auto arcRadius = radius - lineW * 0.5f;
 
     Path backgroundArc;
@@ -42,7 +42,7 @@ void MyLookAndFeel::drawRotarySlider (Graphics& g, int x, int y, int width, int 
     if (slider.isEnabled())
     {
         Path valueLine;
-        Line line(thumbPoint.x, thumbPoint.y, bounds.getCentreX(), bounds.getCentreY());
+        Line line(thumbPoint.x, thumbPoint.y, (bounds.getCentreX() + thumbPoint.x)/2, (bounds.getCentreY() + thumbPoint.y)/2);
     
         valueLine.addLineSegment(line, lineW);
 
