@@ -12,8 +12,6 @@
 AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAudioProcessor& p, AudioProcessorValueTreeState& apvts)
 : AudioProcessorEditor (&p), myApvts(apvts), visual(512, frmtMgr, thmbnlCache), thmbnlCache(5) ,audioProcessor (p)
 {
-    // Make sure that before the constructor has finished, you've set the
-    // editor's size to whatever you need it to be.
     setLookAndFeel(&myLnF);
     setUpParameter(gainSlider, apvts, "GAIN", this);
     setUpParameter(attackSlider, apvts, "ATTACK", this);
@@ -46,7 +44,7 @@ AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAud
                         {
                             auto newSource = std::make_unique<juce::AudioFormatReaderSource> (reader, true);
                             transport.setSource (newSource.get(), 0, nullptr, reader->sampleRate);
-                            visual.setSource (new juce::FileInputSource (file));                            // [7]
+                            visual.setSource (new juce::FileInputSource (file));
                             readerSrc.reset (newSource.release());
                         }
                     }

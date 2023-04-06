@@ -35,8 +35,6 @@ public:
     void sliderValueChanged (Slider* slider) override;
     void changeListenerCallback (ChangeBroadcaster* source) override;
 private:
-    // This reference is provided as a quick way for your editor to
-    // access the processor object that created it.
     MyLookAndFeel myLnF;
     AudioProcessorValueTreeState& myApvts;
     SliderWithAttachment gainSlider;
@@ -45,7 +43,6 @@ private:
     SliderWithAttachment sustainSlider;
     SliderWithAttachment releaseSlider;
     Array<SliderWithAttachment> sliders;
-    //waveform visual
     AudioThumbnail visual;
     AudioFormatManager frmtMgr;
     AudioThumbnailCache thmbnlCache;
