@@ -10,15 +10,19 @@
 
 #pragma once
 #include <JuceHeader.h>
-class WaveformVisual : public AudioThumbnail, public FileDragAndDropTarget, public Component
+#include "PluginProcessor.h"
+class WaveformVisual : public FileDragAndDropTarget, public Component
 {
 public:
-    //audio thumbnail overrides
-    void reset (int numChannels, double sampleRate, int64 totalSamplesInSource) override;
+    WaveformVisual(AudioPluginAudioProcessor& p);
+    ~WaveformVisual();
+    //component overrides
+    void paint (juce::Graphics&) override;
+    void resized() override;
+    
     //drag and drop overrides
     bool isInterestedInFileDrag (const StringArray& files) override;
     void filesDropped (const StringArray& files, int x, int y) override;
 private:
-    AudioFormatManager frmtMgr;
-    AudioThumbnailCache thmbnlCache;
+    AudioPluginAudioProcessor& audioProcessor;
 };

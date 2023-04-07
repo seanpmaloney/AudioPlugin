@@ -55,6 +55,7 @@ public:
     //==============================================================================
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
+    void loadSample(File file);
     Array<ParameterID>& getParamList();
 private:
     AudioEngine engine;
@@ -64,6 +65,9 @@ private:
     ParameterID decayParam;
     ParameterID sustainParam;
     ParameterID releaseParam;
+    AudioFormatManager frmtMgr;
+    AudioFormatReader* formatReader {nullptr};
+    AudioBuffer<float> waveForm;
     Array<ParameterID> paramList;
     AudioProcessorValueTreeState::ParameterLayout createParams();
     //==============================================================================

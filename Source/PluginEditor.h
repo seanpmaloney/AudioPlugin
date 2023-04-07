@@ -11,6 +11,7 @@
 #include <JuceHeader.h>
 #include "MyLookAndFeel.h"
 #include "PluginProcessor.h"
+#include "WaveformVisual.h"
 
 //==============================================================================
 /**
@@ -42,14 +43,9 @@ private:
     SliderWithAttachment decaySlider;
     SliderWithAttachment sustainSlider;
     SliderWithAttachment releaseSlider;
+    WaveformVisual waveformVisual;
     Array<SliderWithAttachment> sliders;
-    AudioThumbnail visual;
-    AudioFormatManager frmtMgr;
-    AudioThumbnailCache thmbnlCache;
-    AudioTransportSource transport;
     std::unique_ptr<juce::AudioFormatReaderSource> readerSrc;
-    std::unique_ptr<TextButton> loadSampleButton;
-    std::unique_ptr<FileChooser> chooser;
     AudioPluginAudioProcessor& audioProcessor;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AudioPluginAudioProcessorEditor)
 };

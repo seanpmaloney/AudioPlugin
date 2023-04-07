@@ -10,7 +10,7 @@
 #include "PluginEditor.h"
 //==============================================================================
 AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAudioProcessor& p, AudioProcessorValueTreeState& apvts)
-: AudioProcessorEditor (&p), myApvts(apvts), visual(512, frmtMgr, thmbnlCache), thmbnlCache(5) ,audioProcessor (p)
+: AudioProcessorEditor (&p), myApvts(apvts),waveformVisual(p), audioProcessor (p)
 {
     setLookAndFeel(&myLnF);
     setUpParameter(gainSlider, apvts, "GAIN", this);
@@ -18,39 +18,8 @@ AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAud
     setUpParameter(decaySlider, apvts, "SUSTAIN", this);
     setUpParameter(sustainSlider, apvts, "DECAY", this);
     setUpParameter(releaseSlider, apvts, "RELEASE", this);
+    addAndMakeVisible(waveformVisual);
     setResizable(true, false);
-
-    visual.addChangeListener(this);
-    
-    loadSampleButton.reset(new TextButton);
-    loadSampleButton->setButtonText("LOAD");
-    addAndMakeVisible(loadSampleButton.get());
-    loadSampleButton->onClick = [this]()
-    {
-        chooser = std::make_unique<juce::FileChooser> ("Select a Wave file to play...",
-                                                       juce::File{},
-                                                       "*.wav");
-        auto chooserFlags = juce::FileBrowserComponent::openMode
-                                  | juce::FileBrowserComponent::canSelectFiles;
-        chooser->launchAsync (chooserFlags, [this] (const juce::FileChooser& fc)
-                {
-                    auto file = fc.getResult();
-         
-                    if (file != juce::File{})
-                    {
-                        auto* reader = frmtMgr.createReaderFor (file);
-         
-                        if (reader != nullptr)
-                        {
-                            auto newSource = std::make_unique<juce::AudioFormatReaderSource> (reader, true);
-                            transport.setSource (newSource.get(), 0, nullptr, reader->sampleRate);
-                            visual.setSource (new juce::FileInputSource (file));
-                            readerSrc.reset (newSource.release());
-                        }
-                    }
-                });
-    };
-    frmtMgr.registerBasicFormats();
     setSize (800, 600);
 }
 
@@ -76,8 +45,6 @@ void AudioPluginAudioProcessorEditor::paint (juce::Graphics& g)
     g.setColour (juce::Colours::white);
     g.drawRoundedRectangle(thumbnailBounds, (w*.02f), (w*.002f));
     g.setColour (juce::Colours::red);
-    visual.drawChannels (g, thumbnailBounds.toNearestInt(),
-                        0.0, visual.getTotalLength(), 1.0f);
 
 }
 
@@ -90,7 +57,7 @@ void AudioPluginAudioProcessorEditor::resized()
     auto next = sliderW;
     auto xPos = sliderW * 0.5f;
     auto yPos = sliderH;
-    loadSampleButton->setBounds(w - sliderW, 0, sliderW, sliderH/2);
+    waveformVisual.setBounds(w - sliderW, 0, sliderW, sliderH/2);
     gainSlider.slider->setBounds(xPos, yPos, sliderW, sliderH);
     attackSlider.slider->setBounds(xPos, (yPos += (next * 1.2)), sliderW, sliderH);
     decaySlider.slider->setBounds(xPos+=next, yPos, sliderW, sliderH);
@@ -120,6 +87,6 @@ void AudioPluginAudioProcessorEditor::sliderValueChanged (Slider* slider)
 
 void AudioPluginAudioProcessorEditor::changeListenerCallback (ChangeBroadcaster* source)
 {
-    if(source == &visual) repaint();
+    
 }
 

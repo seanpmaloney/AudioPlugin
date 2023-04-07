@@ -22,7 +22,7 @@ AudioPluginAudioProcessor::AudioPluginAudioProcessor()
                        ), apvts(*this, nullptr, "Params", createParams())
 #endif
 {
-    
+    frmtMgr.registerBasicFormats();
 }
 
 AudioPluginAudioProcessor::~AudioPluginAudioProcessor()
@@ -205,5 +205,22 @@ AudioProcessorValueTreeState::ParameterLayout AudioPluginAudioProcessor:: create
 Array<ParameterID>& AudioPluginAudioProcessor::getParamList()
 {
     return paramList;
+}
+
+void AudioPluginAudioProcessor::loadSample(File file)
+{
+    auto* reader = frmtMgr.createReaderFor(file);
+    
+    if (reader != nullptr)
+    {
+        auto sampleLength = static_cast<int>(reader->lengthInSamples);
+        waveForm.setSize(2, sampleLength);
+        reader->read(&waveForm, 0, sampleLength, 0, true, true);
+        auto buff = waveForm.getReadPointer(1);
+        for (int i = 0; i < waveForm.getNumSamples(); i++)
+        {
+            DBG(buff[i]);
+        }
+    }
 }
 
