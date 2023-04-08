@@ -12,16 +12,15 @@
 
 MyLookAndFeel::MyLookAndFeel()
 {
-
+    type = Font(Typeface::createSystemTypefaceFor(BinaryData::SFProDisplayBold_otf, BinaryData::SFProDisplayBold_otfSize));
+    setDefaultSansSerifTypeface(type.getTypefacePtr());
 }
 
 void MyLookAndFeel::drawRotarySlider (Graphics& g, int x, int y, int width, int height, float sliderPos,
                                        const float rotaryStartAngle, const float rotaryEndAngle, Slider& slider)
 {
     auto fill    = juce::Colours::white;
-
     auto bounds = Rectangle<int> (x , y, width , height).toFloat().reduced (10);
-
     auto radius = jmin (bounds.getWidth(), bounds.getHeight()) / 2.0f;
     auto toAngle = rotaryStartAngle + sliderPos * (rotaryEndAngle - rotaryStartAngle);
     auto lineW = width * .015f;
@@ -50,6 +49,13 @@ void MyLookAndFeel::drawRotarySlider (Graphics& g, int x, int y, int width, int 
         valueLine.addLineSegment(line, lineW);
 
         g.setColour (fill);
-        g.strokePath(valueLine, PathStrokeType (lineW, PathStrokeType::curved, PathStrokeType::rounded));
+//        g.strokePath(valueLine, PathStrokeType (lineW, PathStrokeType::curved, PathStrokeType::rounded));
     }
+    g.fillEllipse(thumbPoint.getX() - (lineW * 5), thumbPoint.getY() - (lineW * 5), lineW * 10, lineW * 10);
+    
+}
+
+Font MyLookAndFeel::getLabelFont (Label& label)
+{
+    return type;
 }

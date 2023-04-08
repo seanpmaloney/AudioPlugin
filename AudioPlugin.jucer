@@ -3,12 +3,48 @@
 <JUCERPROJECT id="L2SNvF" name="AudioPlugin" projectType="audioplug" useAppConfig="0"
               addUsingNamespaceToJuceHeader="1" displaySplashScreen="1" jucerFormatVersion="1">
   <MAINGROUP id="QfaZ1f" name="AudioPlugin">
-    <GROUP id="{75FB4AA6-2CEC-7AAD-512D-3B778B5C0B10}" name="Fonts">
-      <FILE id="BJR3jd" name="SF-Pro-Italic.ttf" compile="0" resource="1"
-            file="Source/Fonts/SF-Pro-Italic.ttf"/>
-      <FILE id="bMGnaM" name="SF-Pro.ttf" compile="0" resource="1" file="Source/Fonts/SF-Pro.ttf"/>
-    </GROUP>
     <GROUP id="{265A9007-FBC9-2086-F616-8E476C93E4E8}" name="Source">
+      <GROUP id="{E15FBA57-3766-77CD-AF8B-BEF8F1376BCF}" name="Fonts">
+        <FILE id="udu19a" name="SF-Pro-Display-Black.otf" compile="0" resource="1"
+              file="Source/Fonts/SF-Pro-Display-Black.otf"/>
+        <FILE id="YUP8zy" name="SF-Pro-Display-BlackItalic.otf" compile="0"
+              resource="1" file="Source/Fonts/SF-Pro-Display-BlackItalic.otf"/>
+        <FILE id="S3XwMN" name="SF-Pro-Display-Bold.otf" compile="0" resource="1"
+              file="Source/Fonts/SF-Pro-Display-Bold.otf"/>
+        <FILE id="HcQilK" name="SF-Pro-Display-BoldItalic.otf" compile="0"
+              resource="1" file="Source/Fonts/SF-Pro-Display-BoldItalic.otf"/>
+        <FILE id="alshCs" name="SF-Pro-Display-Heavy.otf" compile="0" resource="1"
+              file="Source/Fonts/SF-Pro-Display-Heavy.otf"/>
+        <FILE id="oFTDsS" name="SF-Pro-Display-HeavyItalic.otf" compile="0"
+              resource="1" file="Source/Fonts/SF-Pro-Display-HeavyItalic.otf"/>
+        <FILE id="VBMITo" name="SF-Pro-Display-Light.otf" compile="0" resource="1"
+              file="Source/Fonts/SF-Pro-Display-Light.otf"/>
+        <FILE id="RFbXcc" name="SF-Pro-Display-LightItalic.otf" compile="0"
+              resource="1" file="Source/Fonts/SF-Pro-Display-LightItalic.otf"/>
+        <FILE id="yfFQSX" name="SF-Pro-Display-Medium.otf" compile="0" resource="1"
+              file="Source/Fonts/SF-Pro-Display-Medium.otf"/>
+        <FILE id="btyGzx" name="SF-Pro-Display-MediumItalic.otf" compile="0"
+              resource="1" file="Source/Fonts/SF-Pro-Display-MediumItalic.otf"/>
+        <FILE id="bhpze2" name="SF-Pro-Display-Regular.otf" compile="0" resource="1"
+              file="Source/Fonts/SF-Pro-Display-Regular.otf"/>
+        <FILE id="XdYimC" name="SF-Pro-Display-RegularItalic.otf" compile="0"
+              resource="1" file="Source/Fonts/SF-Pro-Display-RegularItalic.otf"/>
+        <FILE id="evRAyQ" name="SF-Pro-Display-Semibold.otf" compile="0" resource="1"
+              file="Source/Fonts/SF-Pro-Display-Semibold.otf"/>
+        <FILE id="bBdBDA" name="SF-Pro-Display-SemiboldItalic.otf" compile="0"
+              resource="1" file="Source/Fonts/SF-Pro-Display-SemiboldItalic.otf"/>
+        <FILE id="sVvm0k" name="SF-Pro-Display-Thin.otf" compile="0" resource="1"
+              file="Source/Fonts/SF-Pro-Display-Thin.otf"/>
+        <FILE id="b5G9OD" name="SF-Pro-Display-ThinItalic.otf" compile="0"
+              resource="1" file="Source/Fonts/SF-Pro-Display-ThinItalic.otf"/>
+        <FILE id="Ar7NYY" name="SF-Pro-Display-Ultralight.otf" compile="0"
+              resource="1" file="Source/Fonts/SF-Pro-Display-Ultralight.otf"/>
+        <FILE id="NIMzKh" name="SF-Pro-Display-UltralightItalic.otf" compile="0"
+              resource="1" file="Source/Fonts/SF-Pro-Display-UltralightItalic.otf"/>
+        <FILE id="YlEkk1" name="SF-Pro-Italic.ttf" compile="0" resource="1"
+              file="Source/Fonts/SF-Pro-Italic.ttf"/>
+        <FILE id="vs5JyJ" name="SF-Pro.ttf" compile="0" resource="1" file="Source/Fonts/SF-Pro.ttf"/>
+      </GROUP>
       <FILE id="HK7Kfn" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
       <FILE id="jb1pZX" name="PluginProcessor.h" compile="0" resource="0"

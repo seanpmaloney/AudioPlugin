@@ -14,13 +14,13 @@
 class MyLookAndFeel : public LookAndFeel_V4
 {
 public:
+    MyLookAndFeel();
     //override the parts you want to customize
     void drawRotarySlider (Graphics&, int x, int y, int width, int height,
                            float sliderPosProportional, float rotaryStartAngle,
                            float rotaryEndAngle, Slider&) override;
-    MyLookAndFeel();
-    
+    Font getLabelFont (Label& label) override;
 private:
-
+    Font type;
 
 };
