@@ -224,3 +224,8 @@ void AudioPluginAudioProcessor::loadSample(File file)
     }
 }
 
+AudioBuffer<float>& AudioPluginAudioProcessor::getWaveform()
+{
+    return waveForm;
+}
+

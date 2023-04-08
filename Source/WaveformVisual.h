@@ -24,5 +24,6 @@ public:
     bool isInterestedInFileDrag (const StringArray& files) override;
     void filesDropped (const StringArray& files, int x, int y) override;
 private:
+    std::vector<float> audioPoints;
     AudioPluginAudioProcessor& audioProcessor;
 };

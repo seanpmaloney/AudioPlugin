@@ -57,6 +57,7 @@ public:
     void setStateInformation (const void* data, int sizeInBytes) override;
     void loadSample(File file);
     Array<ParameterID>& getParamList();
+    AudioBuffer<float>& getWaveform();
 private:
     AudioEngine engine;
     AudioProcessorValueTreeState apvts;
