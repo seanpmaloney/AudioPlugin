@@ -26,33 +26,38 @@ bool WaveformVisual::isInterestedInFileDrag (const StringArray& files)
 }
 void WaveformVisual::filesDropped (const StringArray& files, int x, int y)
 {
-    
-        audioProcessor.loadSample(files[0]);
+    audioProcessor.loadSample(files[0]);
+    shouldDrawNewWave = true;
 }
 
 void WaveformVisual::paint (juce::Graphics& g)
 {
     auto w = getWidth();
     auto h = getHeight();
-    g.setColour(juce::Colours::white);
-    g.fillAll();
-    //steps to draw the waveform
-    //Get the waveform
-    auto waveform = audioProcessor.getWaveform();
-    //Find ratio of samples to the width of this component
-    auto ratio = waveform.getNumSamples() / w;
-    auto buffer = waveform.getReadPointer(0);
-    //scale for x axis
-    for(int i = 0; i < waveform.getNumSamples(); i+=ratio)
+    g.setColour(juce::Colours::darkgrey);
+    g.fillRoundedRectangle(0, 0, w, h, w*.02f);
+    g.setColour(Colours::white);
+    if(shouldDrawNewWave)
     {
-        audioPoints.push_back(buffer[i]);
+        Path p;
+        auto waveform = audioProcessor.getWaveform();
+        auto ratio = waveform.getNumSamples() / w;
+        auto buffer = waveform.getReadPointer(0);
+        for(int i = 0; i < waveform.getNumSamples(); i+=ratio)
+        {
+            audioPoints.push_back(buffer[i]);
+        }
+        //start the waveform from the left of the component
+        p.startNewSubPath(0, h/2);
+        //scale for y axis
+        for(int i = 0; i < audioPoints.size(); i++)
+        {
+            auto point = jmap<float>(audioPoints[i], -1.0f, 1.0f, h, 0);
+            p.lineTo(i, point);
+        }
+        g.strokePath(p, PathStrokeType(1.0f));
+        shouldDrawNewWave = false;
     }
-    //scale for y axis
-    for(int i = 0; i < audioPoints.size(); i++)
-    {
-        jmap<float>(audioPoints[i], -1.0f, 1.0f, h, 0);
-    }
-    //TODO: draw using the vector..
 }
 void WaveformVisual::resized()
 {

@@ -39,13 +39,6 @@ void AudioPluginAudioProcessorEditor::paint (juce::Graphics& g)
     auto next = sliderW;
     auto xPos = sliderW * 0.5f;
     auto yPos = sliderH;
-    juce::Rectangle<float> thumbnailBounds (xPos +=next, yPos, sliderW * 3, sliderH);
-    g.setColour (juce::Colours::black);
-    g.fillRoundedRectangle(thumbnailBounds, (w*.02f));
-    g.setColour (juce::Colours::white);
-    g.drawRoundedRectangle(thumbnailBounds, (w*.02f), (w*.002f));
-    g.setColour (juce::Colours::red);
-
 }
 
 void AudioPluginAudioProcessorEditor::resized()
@@ -57,7 +50,7 @@ void AudioPluginAudioProcessorEditor::resized()
     auto next = sliderW;
     auto xPos = sliderW * 0.5f;
     auto yPos = sliderH;
-    waveformVisual.setBounds(w - sliderW, 0, sliderW, sliderH/2);
+    waveformVisual.setBounds(xPos + next, yPos, sliderW * 3, sliderH);
     gainSlider.slider->setBounds(xPos, yPos, sliderW, sliderH);
     attackSlider.slider->setBounds(xPos, (yPos += (next * 1.2)), sliderW, sliderH);
     decaySlider.slider->setBounds(xPos+=next, yPos, sliderW, sliderH);

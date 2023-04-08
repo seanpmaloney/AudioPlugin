@@ -10,10 +10,14 @@
 
 #include "MyLookAndFeel.h"
 
+MyLookAndFeel::MyLookAndFeel()
+{
+
+}
+
 void MyLookAndFeel::drawRotarySlider (Graphics& g, int x, int y, int width, int height, float sliderPos,
                                        const float rotaryStartAngle, const float rotaryEndAngle, Slider& slider)
 {
-    auto outline = juce::Colours::darkgrey ;
     auto fill    = juce::Colours::white;
 
     auto bounds = Rectangle<int> (x , y, width , height).toFloat().reduced (10);
@@ -35,7 +39,6 @@ void MyLookAndFeel::drawRotarySlider (Graphics& g, int x, int y, int width, int 
     g.setColour (fill);
     g.drawEllipse(bounds.getCentreX() - arcRadius, bounds.getCentreY() - arcRadius, arcRadius*2, arcRadius*2, lineW);
 
-    auto thumbWidth = lineW * 2.0f;
     Point<float> thumbPoint (bounds.getCentreX() + arcRadius * std::cos (toAngle - MathConstants<float>::halfPi),
                              bounds.getCentreY() + arcRadius * std::sin (toAngle - MathConstants<float>::halfPi));
     

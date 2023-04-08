@@ -25,5 +25,6 @@ public:
     void filesDropped (const StringArray& files, int x, int y) override;
 private:
     std::vector<float> audioPoints;
+    bool shouldDrawNewWave = false;
     AudioPluginAudioProcessor& audioProcessor;
 };

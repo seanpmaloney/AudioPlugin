@@ -3,6 +3,11 @@
 <JUCERPROJECT id="L2SNvF" name="AudioPlugin" projectType="audioplug" useAppConfig="0"
               addUsingNamespaceToJuceHeader="1" displaySplashScreen="1" jucerFormatVersion="1">
   <MAINGROUP id="QfaZ1f" name="AudioPlugin">
+    <GROUP id="{75FB4AA6-2CEC-7AAD-512D-3B778B5C0B10}" name="Fonts">
+      <FILE id="BJR3jd" name="SF-Pro-Italic.ttf" compile="0" resource="1"
+            file="Source/Fonts/SF-Pro-Italic.ttf"/>
+      <FILE id="bMGnaM" name="SF-Pro.ttf" compile="0" resource="1" file="Source/Fonts/SF-Pro.ttf"/>
+    </GROUP>
     <GROUP id="{265A9007-FBC9-2086-F616-8E476C93E4E8}" name="Source">
       <FILE id="HK7Kfn" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
