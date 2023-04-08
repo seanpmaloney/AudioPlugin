@@ -219,7 +219,7 @@ void AudioPluginAudioProcessor::loadSample(File file)
         auto buff = waveForm.getReadPointer(1);
         for (int i = 0; i < waveForm.getNumSamples(); i++)
         {
-            DBG(buff[i]);
+            //DBG(buff[i]);
         }
     }
 }
