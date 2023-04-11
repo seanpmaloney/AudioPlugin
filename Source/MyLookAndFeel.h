@@ -20,6 +20,7 @@ public:
                            float sliderPosProportional, float rotaryStartAngle,
                            float rotaryEndAngle, Slider&) override;
     Font getLabelFont (Label& label) override;
+    void drawLabel (Graphics& g, Label& label) override;
 private:
     Font type;
 

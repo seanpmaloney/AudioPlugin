@@ -31,14 +31,15 @@ AudioPluginAudioProcessorEditor::~AudioPluginAudioProcessorEditor()
 void AudioPluginAudioProcessorEditor::paint (juce::Graphics& g)
 {
     // (Our component is opaque, so we must completely fill the background with a solid colour)
-    g.fillAll (juce::Colours::black);
-    g.setColour(juce::Colours::white);
+    g.fillAll (juce::Colours::white);
+    g.setColour(juce::Colours::white.darker());
     int w = getWidth();
     auto sliderW = w / 5;
     auto sliderH = sliderW;
     auto next = sliderW;
     auto xPos = sliderW * 0.5f;
     auto yPos = sliderH;
+    g.drawRoundedRectangle(xPos + next, yPos, sliderW * 3, sliderH, w*.02f,w*.01f);
 }
 
 void AudioPluginAudioProcessorEditor::resized()
@@ -60,7 +61,7 @@ void AudioPluginAudioProcessorEditor::resized()
 
 void AudioPluginAudioProcessorEditor::setUpParameter(SliderWithAttachment& s, juce::AudioProcessorValueTreeState& apvts, String labelText, Slider::Listener* listener)
 {
-    s.slider.reset(new juce::Slider(juce::Slider::RotaryHorizontalVerticalDrag, juce::Slider::NoTextBox));
+    s.slider.reset(new juce::Slider(juce::Slider::RotaryHorizontalVerticalDrag, juce::Slider::TextBoxAbove));
     addAndMakeVisible(s.slider.get());
     s.attachment.reset(new juce::AudioProcessorValueTreeState::SliderAttachment(apvts, labelText, *s.slider.get()));
     s.slider->addListener(listener);

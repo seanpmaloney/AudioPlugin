@@ -34,12 +34,13 @@ void WaveformVisual::paint (juce::Graphics& g)
 {
     auto w = getWidth();
     auto h = getHeight();
-    g.setColour(juce::Colours::darkgrey);
+    g.setColour(juce::Colours::white.darker());
     g.fillRoundedRectangle(0, 0, w, h, w*.02f);
     g.setColour(Colours::white);
     if(shouldDrawNewWave)
     {
         Path p;
+        audioPoints.clear();
         auto waveform = audioProcessor.getWaveform();
         auto ratio = waveform.getNumSamples() / w;
         auto buffer = waveform.getReadPointer(0);
